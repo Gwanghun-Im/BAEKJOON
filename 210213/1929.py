@@ -1,15 +1,15 @@
 # 1929번 : 소수 구하기
 
-sieve = [1 for i in range(1000001)]
+a, b = map(int ,input().split())
+
+sieve = [1 for i in range(b+1)]
 sieve[1] = 0
 
-for i in range(2, 1000001):
+for i in range(2, b+1):
     if sieve[i] == 0:
         continue
-    for j in range(2*i, 1000001, i):
+    for j in range(2*i, b+1, i):
         sieve[j] = 0
-
-a, b = map(int ,input().split())
 
 for i in range(a, b+1):
     if sieve[i]:
