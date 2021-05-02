@@ -1,6 +1,5 @@
 # 1916번 : 최소비용 구하기
 from heapq import heappush, heappop
-import heapq
 
 def dijkstra(start):
     dp[start] = 0
