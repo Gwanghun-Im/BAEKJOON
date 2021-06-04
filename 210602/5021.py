@@ -1,5 +1,4 @@
 # 5021번 : 왕위 계승
-from collections import deque
 
 N, M = map(int, input().split())
 family_tree = {}
