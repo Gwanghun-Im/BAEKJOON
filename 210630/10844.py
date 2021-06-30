@@ -15,6 +15,4 @@ for i in range(1, N):
             continue
         dp[i][j] = dp[i-1][j-1] + dp[i-1][j+1]
 
-for i in dp:
-    print(i)
 print(sum(dp[-1][1:])%1000000000)
