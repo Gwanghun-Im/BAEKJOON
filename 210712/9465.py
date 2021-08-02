@@ -8,6 +8,6 @@ for T in range(int(input())):
     else:
         dp = [[0]*n for _ in range(2)]
         for i in range(n):
-            for j in range(2):
-                dp[j][i] = max(dp[not j][i-1], dp[not j][i-2], dp[j][i-2]) + a[j][i]
-        print(max(dp[0][-1], dp[1][-1]))
+            dp[0][i] = max(dp[1][i-1], dp[0][i-2], dp[1][i-2]) + a[0][i]
+            dp[1][i] = max(dp[0][i-1], dp[0][i-2], dp[1][i-2]) + a[1][i]
+        print(max(dp[0][n-1], dp[1][n-1]))
