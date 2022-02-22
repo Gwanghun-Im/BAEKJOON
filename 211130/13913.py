@@ -1,24 +1,30 @@
-import heapq
+import sys
+input = sys.stdin.readline
+from collections import deque
+N, K = map(int, input().split())
+arr = [[0, ''] for _ in range(100000 + 1)]
+q = deque()
+q.append(N)
 
-X, Y = map(int, input().split())
-def solve():
-    h = []
-    v = [0]*100001
-    v[X] = 1
-    heapq.heappush(h, [0, X, str(X)])
-    while heapq:
-        w, now, ans = heapq.heappop(h)
-        if now == Y:
-            return w, ans
-        if now*2<100001 and now*2 < Y*2 and not v[now*2]:
-            heapq.heappush(h, [w+1, now*2, ans+' '+str(now*2)])
-            v[now*2] = 1
-        if 0<= now+1<100001 and not v[now+1]:
-            v[now+1] = 1
-            heapq.heappush(h, [w+1, now+1, ans+' '+str(now+1)])
-        if 0<= now-1<100001 and not v[now-1]:
-            v[now-1] = 1
-            heapq.heappush(h, [w+1, now-1, ans+' '+str(now-1)])
-w, ans = solve()
-print(w)
-print(ans)
+def bfs():
+    while q:
+        index = q.popleft()
+        if index == K:
+            return arr[index][0], arr[index][1] + ' ' + str(K)
+
+        for c in (index * 2, index - 1, index + 1):
+            if c == index * 2 and 2 * K <= c:
+                continue
+            if 0 <= c <= 100000 and not arr[c][0]:
+                arr[c][0] = arr[index][0] + 1
+
+                arr[c][1] = arr[index][1] + ' ' + str(index)
+                q.append(c)
+        arr[index][1] = ''
+
+
+n, ar = bfs()
+ar = ar[1:]
+print(n)
+print(ar)
+# print(*bfs())
